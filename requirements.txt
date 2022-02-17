@@ -1,2 +1,14 @@
-nose
-sphinx
+pylint
+pytest
+click
+black
+pytest-cov
+difPy
+matplotlib
+numpy
+pandas
+scikit_learn
+streamlit
+scipy
+torch
+torchsummary
