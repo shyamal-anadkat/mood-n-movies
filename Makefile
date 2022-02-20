@@ -10,4 +10,4 @@ lint:
 
 clean: format lint
 all: install format lint
-ci: test format lint
+ci: format lint
