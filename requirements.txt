@@ -8,7 +8,9 @@ matplotlib
 numpy
 pandas
 scikit_learn
+requests
 streamlit
+bs4
 scipy
 torch
 torchsummary
