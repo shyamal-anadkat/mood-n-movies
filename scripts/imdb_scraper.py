@@ -29,7 +29,7 @@ while True:
     produce_year_list = []
     soup = BeautifulSoup(data_page.text)
     list_item_content = soup.findAll("div", class_="lister-item-content")
-    print(len(list_item_content))
+    print("number of movies on page: " + str(len(list_item_content)))
     for movie_content in list_item_content:
         list_muted_text = movie_content.findAll("p", class_="text-muted")
         introduction_list.append(list_muted_text[1].text.replace("\n ", ""))
@@ -112,7 +112,7 @@ while True:
     df = pd.DataFrame(
         {
             "title": titles,
-            "title_href": title_href,
+            "title_href": title_hrefs,
             "genre": genres,
             "certificate": certificates,
             "votes": votes,
