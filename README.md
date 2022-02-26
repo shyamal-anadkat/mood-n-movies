@@ -1,3 +1,4 @@
+[![build](https://github.com/shyamal-anadkat/AIPI540_NLP/actions/workflows/main.yml/badge.svg?branch=master)](https://github.com/shyamal-anadkat/AIPI540_NLP/actions/workflows/main.yml)
 
 AIPI540 NLP
 ========================
