@@ -7,3 +7,9 @@ AIPI540 NLP
 
 **Problem definition:** TBD
 
+
+
+## Contributing 
+
+* Run `make clean` before pushing your code
+
