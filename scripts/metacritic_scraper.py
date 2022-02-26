@@ -1,7 +1,9 @@
 from bs4 import BeautifulSoup
 import requests
 
-
+##############################
+## Author: Shyamal Anadkat ###
+##############################
 def get_critic_reviews(movie_title):
     review_dict = {
         "critic_reviews": [],

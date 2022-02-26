@@ -8,7 +8,7 @@ movie_df = pd.DataFrame()
 ## Credits to Yulin Zheng for some of the logic that we used to adapt the code ##
 while True:
     url = (
-        "https://www.imdb.com/search/title/?groups=top_1000&count=100&start="
+        "https://www.imdb.com/search/title/?groups=top_1000&release_date=2000,2022&countries=!in&count=100&start="
         + str(page)
         + "&ref_=adv_nxt"
     )
@@ -16,6 +16,7 @@ while True:
     print(url)
     titles = []
     title_hrefs = []
+    mc_links = []
     certificates = []
     ratings = []
     genres = []
@@ -36,6 +37,18 @@ while True:
         item_header = movie_content.find("h3", class_="lister-item-header")
         title = item_header.find("a")
         title_href = item_header.find("a", href=True)["href"]
+
+        # get metacritic link/title
+        critic_url = f"https://www.imdb.com{title_href}criticreviews"
+        mc_page = requests.get(critic_url, headers={"Accept-Language": "en-US"})
+        mc_soup = BeautifulSoup(mc_page.text)
+        mc_link_elem = mc_soup.select_one("a[href*=https://www.metacritic.com/movie/]")
+        if mc_link_elem:
+            mc_link = mc_link_elem["href"]
+        else:
+            mc_link = ""
+            print(f"MC link not available for {title}-{title_href}")
+
         rating = movie_content.find("strong")
         certificate = movie_content.find("span", class_="certificate")
         vote = movie_content.find("p", class_="sort-num_votes-visible")
@@ -92,6 +105,8 @@ while True:
             titles.append(title.text.strip())
         else:
             titles.append(title)
+        if mc_link != None:
+            mc_links.append(mc_link)
         if genre != None:
             genres_text = genre.text.replace(" ", "")
             genres_text = genres_text.strip()
@@ -113,6 +128,7 @@ while True:
         {
             "title": titles,
             "title_href": title_hrefs,
+            "mc_link": mc_links,
             "genre": genres,
             "certificate": certificates,
             "votes": votes,
