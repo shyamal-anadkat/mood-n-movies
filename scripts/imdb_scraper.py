@@ -8,7 +8,7 @@ movie_df = pd.DataFrame()
 ## Credits to Yulin Zheng for some of the logic that we used to adapt the code ##
 while True:
     url = (
-        "https://www.imdb.com/search/title/?groups=top_1000&release_date=2000,2022&countries=!in&count=100&start="
+        "https://www.imdb.com/search/title/?groups=top_1000&languages=en&count=100&start="
         + str(page)
         + "&ref_=adv_nxt"
     )
