@@ -1,6 +1,13 @@
 from transformers import pipeline
 import pandas as pd
 
+
+def _get_emotion_scores(clf, reviews):
+    return clf(
+        reviews,
+    )
+
+
 if __name__ == "__main__":
     # Distilbert is created with knowledge distillation during the pre-training phase which reduces the size of a BERT model
     # by 40%, while retaining 97% of its language understanding. It's smaller, faster than Bert and any other Bert-based model.
@@ -14,11 +21,15 @@ if __name__ == "__main__":
         return_all_scores=True,
     )
 
-    reviews_data = pd.read_csv("../data/raw/reviews_data_raw.csv")
-    prediction = classifier(
-        "I love using transformers. The best part is wide range of support and its easy to use",
+    rows_to_keep = [0, 3]
+    reviews_data = pd.read_csv(
+        "../data/raw/reviews_data_raw.csv", skiprows=lambda x: x not in rows_to_keep
+    )
+    print(reviews_data)
+    reviews_data["emotion_scores_user_reviews"] = reviews_data["user_reviews"].apply(
+        lambda x: _get_emotion_scores(classifier, x)
     )
 
+    # print(reviews_data)
     # TO-DO: prediction for each user review and aggregate scores
-
-    print(prediction)
+    # reviews_data.to_csv('reviews_data_with_emotion_scores.csv', index=False)

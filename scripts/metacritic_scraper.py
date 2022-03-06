@@ -23,7 +23,9 @@ def get_critic_reviews(movie_title):
     for review in soup.find_all("div", class_="review pad_top1 pad_btm1"):
         if review.find("a", class_="no_hover"):
             review_dict["critic_reviews"].append(
-                review.find("a", class_="no_hover").text.strip()
+                "<review>"
+                + review.find("a", class_="no_hover").text.strip()
+                + "</review>"
             )
             review_dict["num_critic_reviews"] += 1
             count += 1
@@ -51,11 +53,15 @@ def get_user_reviews(movie_title):
     for review in soup.find_all("div", class_="review pad_top1"):
         if review.find("span", class_="blurb blurb_expanded"):
             review_dict["user_reviews"].append(
-                review.find("span", class_="blurb blurb_expanded").text.strip()
+                "<review>"
+                + review.find("span", class_="blurb blurb_expanded").text.strip()
+                + "</review>"
             )
         else:
             review_dict["user_reviews"].append(
-                review.find("div", class_="review_body").find("span").text.strip()
+                "<review>"
+                + review.find("div", class_="review_body").find("span").text.strip()
+                + "</review>"
             )
         review_dict["num_user_reviews"] += 1
         count += 1
