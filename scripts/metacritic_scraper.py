@@ -29,7 +29,8 @@ def get_critic_reviews(movie_title):
             count += 1
         if count == 10:
             break
-    return pd.DataFrame([review_dict])
+    # return pd.DataFrame([review_dict])
+    return review_dict
 
 
 def get_user_reviews(movie_title):
@@ -60,12 +61,44 @@ def get_user_reviews(movie_title):
         count += 1
         if count == 10:
             break
-    return pd.DataFrame([review_dict])
+    # return pd.DataFrame([review_dict])
+    return review_dict
+
+
+def reviews_fetch_and_fill(imdb_df):
+    count = 0
+    data = []
+    for _, row in imdb_df.iterrows():
+        record = dict()
+        title = row["mc_link"].split("movie", 1)[1].split("?")[0].split("/")[1]
+        try:
+            critic_reviews = get_critic_reviews(title)
+            user_reviews = get_user_reviews(title)
+
+            record["mc_link"] = row["mc_link"]
+            record["title"] = title
+
+            record["mc_link_critic"] = critic_reviews["metacritic_url"]
+            record["mc_link_user"] = user_reviews["metacritic_url"]
+
+            record["user_reviews"] = user_reviews["user_reviews"]
+            record["critic_reviews"] = critic_reviews["critic_reviews"]
+
+            record["num_user_reviews"] = user_reviews["num_user_reviews"]
+            record["num_critic_reviews"] = critic_reviews["num_critic_reviews"]
+            data.append(record)
+            count += 1
+        except Exception as e:  # pylint: disable=broad-except
+            print(f"Unable to fetch reviews for {title}:{e}. Continuing.")
+    print(f":: All done! Processed {count} records ::")
+    return data
 
 
 if __name__ == "__main__":
-    ## testing ##
-    title = "dune"
-    critic_reviews = get_critic_reviews(title)
-    user_reviews = get_user_reviews(title)
-    print(critic_reviews)
+    imdbdata = pd.read_csv("../data/processed/IMBD_top_1000_clean.csv")
+    print(f"IMDB clean data, no. of records: {len(imdbdata)}")
+    reviewsdata = reviews_fetch_and_fill(imdbdata)
+    finaldf = pd.DataFrame(reviewsdata)
+    path = "../data/raw/reviews_data_raw.csv"
+    finaldf.to_csv(path, index=False)
+    print(f":: Saved in {path} ::")

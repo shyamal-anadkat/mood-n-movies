@@ -91,3 +91,5 @@ ENV/
 
 # idea files
 .idea/
+data/.DS_Store
+.DS_Store
