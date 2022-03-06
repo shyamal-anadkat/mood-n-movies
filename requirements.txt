@@ -14,3 +14,6 @@ bs4
 scipy
 torch
 torchsummary
+transformers
+pytorch_lightning
+sentencepiece
