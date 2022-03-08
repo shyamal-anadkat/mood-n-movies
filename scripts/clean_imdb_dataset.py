@@ -22,12 +22,14 @@ def dataframe_info(data):
     visualize_missing_values(data)
 
     # after cleaning missing values
-    print(f"\nThe summary statistics after cleaning:\n{(clean_imdb_df(data)).describe()}\n")
+    print(
+        f"\nThe summary statistics after cleaning:\n{(clean_imdb_df(data)).describe()}\n"
+    )
     pct_missing_values((clean_imdb_df(data)))
 
 
 def select_numeric_columns(data):
-    numeric_df = data.select_dtypes(include = [np.number])
+    numeric_df = data.select_dtypes(include=[np.number])
     numeric_columns = numeric_df.columns.values
     return print(f"The numeric columns in the dataframe are: \n{numeric_columns}")
 
@@ -40,15 +42,18 @@ def select_non_numeric_columns(data):
 
 def visualize_missing_values(data):
     missing_columns = data.columns
-    colors = ['skyblue', 'royalblue']
-    heat_map = sns.heatmap(data[missing_columns].isnull(), cmap=sns.color_palette(colors))
+    colors = ["skyblue", "royalblue"]
+    heat_map = sns.heatmap(
+        data[missing_columns].isnull(), cmap=sns.color_palette(colors)
+    )
     return heat_map
 
 
 def pct_missing_values(data):
     for column in data.columns:
         pct_missing = np.mean(data[column].isnull())
-    return print('{} - {}%'.format(column, round(pct_missing*100)))
+        print("{} - {}%".format(column, round(pct_missing * 100)))
+    return
 
 
 def clean_imdb_df(data):
@@ -57,7 +62,11 @@ def clean_imdb_df(data):
 
     # cleaning the introduction and produce_year columns
     intro_clean = clean_imdb_data["introduction"].replace("\n", "", regex=True)
-    year_clean = clean_imdb_data["produce_year"].replace("I", "", regex=True).replace(" ", "", regex=True)
+    year_clean = (
+        clean_imdb_data["produce_year"]
+        .replace("I", "", regex=True)
+        .replace(" ", "", regex=True)
+    )
 
     # create new clean columns for introduction and year
     clean_imdb_data["intro"] = intro_clean
@@ -65,11 +74,15 @@ def clean_imdb_df(data):
 
     # renamed the columns back to original names with cleaned data
     clean_imdb_data = clean_imdb_data.drop(columns=["introduction", "produce_year"])
-    clean_imdb = clean_imdb_data.rename(columns={"intro": "introduction", "year": "produce_year"})
+    clean_imdb = clean_imdb_data.rename(
+        columns={"intro": "introduction", "year": "produce_year"}
+    )
     return clean_imdb
 
 
 if __name__ == "main":
     IMDB_data = pd.read_csv("../data/raw/imdb_top_1000_lang_en.csv")
     dataframe_info(IMDB_data)
-    clean_data = (clean_imdb_df(IMDB_data)).to_csv("../data/processed/imdb_top_1000_clean.csv", index=False)
+    clean_data = (clean_imdb_df(IMDB_data)).to_csv(
+        "../data/processed/imdb_top_1000_clean.csv", index=False
+    )
