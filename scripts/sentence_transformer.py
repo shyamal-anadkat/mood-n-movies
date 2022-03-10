@@ -8,32 +8,40 @@ from sentence_transformers import SentenceTransformer, util
 # designed for semantic search. It has been trained on 215M (question, answer) pairs from diverse sources.
 # For an introduction to semantic search, have a look at: SBERT.net - Semantic Search
 
-# get preloaded model (see model.py)
-# from sentence_transformers import SentenceTransformer
-modelPath = "../models/multi-qa-MiniLM-L6-cos-v1"
-model = SentenceTransformer(modelPath)
 
-df = pd.read_csv("../data/processed/with_plot_summary.csv")
-sample = df[["title", "plot", "mc_link"]]
+def similarity_search(query, df):
+    # get preloaded model (see model.py)
+    # from sentence_transformers import SentenceTransformer
+    modelPath = (
+        "models/multi-qa-MiniLM-L6-cos-v1"  # "../models/multi-qa-MiniLM-L6-cos-v1"
+    )
+    model = SentenceTransformer(modelPath)
+    sample = df[["title_x", "plot"]]
 
-query = "rich kid"
-titles = sample["title"].tolist()
-docs = sample["plot"].tolist()
+    titles = sample["title_x"].tolist()
+    docs = sample["plot"].tolist()
 
-# Encode query and documents
-query_emb = model.encode(query)
-doc_emb = model.encode(docs)
+    # Encode query and documents
+    query_emb = model.encode(query)
+    doc_emb = model.encode(docs)
 
-# Compute dot score between query and all document embeddings
-scores = util.dot_score(query_emb, doc_emb)[0].cpu().tolist()
+    # Compute dot score between query and all document embeddings
+    scores = util.dot_score(query_emb, doc_emb)[0].cpu().tolist()
 
-# Combine docs & scores
-doc_score_pairs = list(zip(docs, scores, titles))
+    # Combine docs & scores
+    doc_score_pairs = list(zip(docs, scores, titles))
 
-# Sort by decreasing score
-doc_score_pairs = sorted(doc_score_pairs, key=lambda x: x[1], reverse=True)
+    # Sort by decreasing score
+    doc_score_pairs = sorted(doc_score_pairs, key=lambda x: x[1], reverse=True)
 
-# Output passages & scores
-print(f"Total Results:{len(doc_score_pairs)}")
-for doc, score, title in doc_score_pairs[0:20]:
-    print(title, score, doc)
+    # Output passages & scores
+    print(f"Total Results:{len(doc_score_pairs)}")
+    retVal = list()
+    for doc, score, title in doc_score_pairs[0:10]:  # pylint: disable=unused-variable
+        retVal.append([title, score])
+    return retVal
+
+
+if __name__ == "__main__":
+    testdf = pd.read_csv("../data/outputs/finaldf.csv")
+    print(similarity_search("1940", testdf))

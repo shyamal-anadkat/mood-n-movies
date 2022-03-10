@@ -20,3 +20,4 @@ pytorch_lightning
 sentencepiece
 textblob
 sentence_transformers
+streamlit
