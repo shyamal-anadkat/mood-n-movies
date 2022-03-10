@@ -43,7 +43,7 @@ def create_df_with_plots(imdb_df):
 
     # example link dune.. https://en.wikipedia.org/wiki/Dune_(2021_film)
     plots_dicts = list()
-    for title, href, mc_link, year in movie_title[0:31]:
+    for title, href, mc_link, year in movie_title:
         # get URL
         wiki_title = (
             title.strip()
@@ -122,7 +122,7 @@ def create_df_with_plots(imdb_df):
 
 
 if __name__ == "__main__":
-    in_path = "../data/processed/imdb_top_1000_clean.csv"
+    in_path = "../data/processed/IMDB_top_1000_clean.csv"
     out_path = "../data/processed/with_plot_summary.csv"
     print(
         f":: Scraping plots for wikipedia using input CSV: {in_path}, please wait...::"
