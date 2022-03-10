@@ -17,12 +17,12 @@ def get_reccs(in_mood, in_query):
         lambda score: get_score(in_mood, score)
     )
 
-    # takes 50 largest by mood score for that particular mood
+    # takes 100 largest by mood score for that particular mood
     srted = finaldf.nlargest(
         100, "mood_score"
     )  # https://pandas.pydata.org/pandas-docs/version/0.17.0/generated/pandas.DataFrame.nlargest.html
 
-    srted.to_csv("test.csv", index=False)
+    # srted.to_csv("test.csv", index=False)
 
     # based on input mood, get the 10 highest scores for love across finaldf aggregate_score
     retVal = similarity_search(in_query, srted)

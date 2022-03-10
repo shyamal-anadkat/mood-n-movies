@@ -37,6 +37,7 @@ def similarity_search(query, df):
     # Output passages & scores
     print(f"Total Results:{len(doc_score_pairs)}")
     retVal = list()
+    # only return top 10 matches
     for doc, score, title in doc_score_pairs[0:10]:  # pylint: disable=unused-variable
         retVal.append([title, score])
     return retVal
