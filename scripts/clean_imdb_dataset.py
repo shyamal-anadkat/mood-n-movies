@@ -82,6 +82,6 @@ def clean_imdb_df(data):
 if __name__ == "__main__":
     IMDB_data = pd.read_csv("../data/raw/imdb_top_1000_lang_en.csv")
     dataframe_info(IMDB_data)
-    path = "../data/processed/imdb_top_1000_clean.csv"
+    path = "../data/processed/IMDB_top_1000_clean.csv"
     clean_data = (clean_imdb_df(IMDB_data)).to_csv(path, index=False)
     print(f":: All done. Saved cleaned file in {path} ::")
