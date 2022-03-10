@@ -1,4 +1,11 @@
 import pandas as pd
+from nltk.corpus import stopwords
+
+
+def clean_plot(text):
+    stop_words = set(stopwords.words("english"))
+    no_stopword_text = [w for w in text.split() if not w in stop_words]
+    return " ".join(no_stopword_text)
 
 
 def merge():

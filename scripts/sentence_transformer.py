@@ -9,21 +9,14 @@ from sentence_transformers import SentenceTransformer, util
 # For an introduction to semantic search, have a look at: SBERT.net - Semantic Search
 
 
-def similarity_search(query, df):
-    # get preloaded model (see model.py)
-    # from sentence_transformers import SentenceTransformer
-    modelPath = (
-        "models/multi-qa-MiniLM-L6-cos-v1"  # "../models/multi-qa-MiniLM-L6-cos-v1"
-    )
-    model = SentenceTransformer(modelPath)
-    sample = df[["title_x", "plot"]]
+def similarity_search(query, df, model, doc_emb):
 
+    sample = df[["title_x", "plot"]]
     titles = sample["title_x"].tolist()
     docs = sample["plot"].tolist()
 
     # Encode query and documents
     query_emb = model.encode(query)
-    doc_emb = model.encode(docs)
 
     # Compute dot score between query and all document embeddings
     scores = util.dot_score(query_emb, doc_emb)[0].cpu().tolist()
@@ -44,5 +37,11 @@ def similarity_search(query, df):
 
 
 if __name__ == "__main__":
+    # get preloaded model (see model.py)
+    # from sentence_transformers import SentenceTransformer
+    modelPath = (
+        "../models/multi-qa-MiniLM-L6-cos-v1"  # "../models/multi-qa-MiniLM-L6-cos-v1"
+    )
+    stmodel = SentenceTransformer(modelPath)
     testdf = pd.read_csv("../data/outputs/finaldf.csv")
-    print(similarity_search("1940", testdf))
+    print(similarity_search("1940", testdf, stmodel, None))
