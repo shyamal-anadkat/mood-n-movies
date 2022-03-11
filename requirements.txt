@@ -22,3 +22,6 @@ textblob
 sentence_transformers
 nltk
 streamlit
+spacy
+gensim
+smart_open

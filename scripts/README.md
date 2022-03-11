@@ -9,6 +9,12 @@ Here's where we are housing all the scripts:
 * `wiki_movie_scraper.py`: scrapes movie plots from wikipedia to be used by recommendation system
 * `build_features.py`: merges processed datasets to creat the final output df
 
+Non-Deep Learning Approach
+
+* `non-dl/classification_model.py`
+* `non-dl/final_non_dl_approach.py`
+* `non-dl/multi_label_classification_check.py`
+
 ### Why Metacritic? 
 
 Metacritic offers the most balanced aggregate score. If you don't mind which critics' opinions go into the final score and prefer seeing a general average, then you should use Metacritic. Its standards are mostly unknown, but Metacritic makes it easy to compare professional and user reviews side-by-side.
