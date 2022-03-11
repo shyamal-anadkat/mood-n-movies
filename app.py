@@ -26,7 +26,7 @@ input_text = st.text_input(
 st.write("You typed: ", input_text)
 
 mood = st.selectbox(
-    "How would you like to feel?:",
+    "What mood are you in ?",
     ("sadness", "joy", "love", "fear", "surprise", "anger"),
 )
 st.write("You selected:", mood)
@@ -34,6 +34,9 @@ finaldf, stmodel, plots_emb = copy.deepcopy(preload())
 
 if st.button("Recommend me some movies!"):
     # st.write(input_text, mood)
+    if mood == "sadness" or mood == "anger":
+        input_text = "comedy " + input_text
+    print(f"Input Text: {input_text}")
     recommendations = get_reccs(
         finaldf, in_mood=mood, in_query=input_text, stmodel=stmodel, doc_emb=plots_emb
     )

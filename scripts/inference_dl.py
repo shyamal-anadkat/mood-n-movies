@@ -9,10 +9,28 @@ def get_score(mood, agg_score):
     return score
 
 
+def get_mapped_mood(in_mood):
+    # mood_list = ["sadness", "joy", "love", "fear", "surprise", "anger"]
+    if in_mood == "sadness":
+        return "joy"
+    elif in_mood == "joy":
+        return "joy"
+    elif in_mood == "love":
+        return "love"
+    elif in_mood == "anger":
+        return "love"
+    elif in_mood == "fear":
+        return "fear"
+    elif in_mood == "surprise":
+        return "surprise"
+
+
 def get_reccs(finaldf, in_mood, in_query, stmodel, doc_emb):
     finaldf["aggregate_score"] = finaldf["aggregate_score"].tolist()
+    mapped_mood = get_mapped_mood(in_mood)
+    print(f"Recommending {mapped_mood} movies")
     finaldf["mood_score"] = finaldf["aggregate_score"].apply(
-        lambda score: get_score(in_mood, score)
+        lambda score: get_score(mapped_mood, score)
     )
 
     # takes 100 largest by mood score for that particular mood
