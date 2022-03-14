@@ -5,7 +5,7 @@ Here is the process followed in non-dl approach
 *                                                     **Joy**	   :   Action,Adventure, Fantasy,Scifi
                                                       **Sadness**:   Comedy
                                                       **Surprise**:  Crime,Thriller,Mystery
-                                                      **Anger**:	   Family
+                                                      **Anger**:	  Family
                                                       **Fear**:   	 Horror
                                                       **Love**:   	 Drama
 
