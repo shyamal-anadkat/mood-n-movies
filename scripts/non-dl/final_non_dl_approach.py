@@ -76,7 +76,7 @@ feelings = [
     "Joy",
     "Fear",
     "Surprise",
-    "Love",
+    "Anger",
     "Joy",
     "Surprise",
     "love",
