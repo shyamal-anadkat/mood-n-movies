@@ -1,7 +1,7 @@
 Here is the process followed in non-dl approach
 
 ## Data Processing
-* Got all the data to a single dataframe and cleaned the data
+* Got all the data to a single dataframe(Movies,plot summary, IMDB rating,Metacritic rating,Genre) and cleaned the data
 ## Mood ---> Genre
 * Assigned a genre manually to different moods as follows 
 ```
