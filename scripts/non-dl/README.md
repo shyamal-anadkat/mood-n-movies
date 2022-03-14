@@ -1,6 +1,6 @@
 Here is the process followed in non-dl approach
 
-* `Data Processing` : Got all the data(movie names, IMDB rating, Metacritic rating, introduction, genre, plot summary to a single dataframe and cleaned the data
+* `Data Processing` : Got all the data to a single dataframe and cleaned the data
 * `Mood ---> Genre`: Assigned a genre manually to different moods as follows 
 *  ```
 ├── Joy                     <- Action,Adventure,Fantasy,Sci-Fi
@@ -13,6 +13,11 @@ Here is the process followed in non-dl approach
 ```
 * `Genre mapping`: We have compared the genres classified based on movies to genres classified in the input data by IMDB
 
-* `LDA topic modeling`: We take input from the user as to describe the movie they want to watch after selecting the mood. The movvies in the input data are classified into certain topics based on LDA unsupervised approach. We also use the same on the input user is providing and compare the scores using MSE to see the closest mapping. 
+## LDA Topic Modeling
+* We take input from the user  to describe the movie they want to watch after selecting the mood. 
+* All the movies in the input data are classified into certain topics based on LDA unsupervised approach.
+* We use the same modeling on the input user has provided and compare the scores using MSE to see the closest mapping. 
 
-* `Sentence Mapping`: We have done tokenization, lemmatization and removed stop words from the plot summary and the input given by the user. Now we see how many common words are there between plot summary and input. this ratio is used to filter the best match
+## Sentence Mapping
+* We did tokenization, lemmatization and removed stop words from the plot summary and the input given by the user. 
+* We then calculated ratio between number of common words to number of words in input. this ratio is used to filter the best match
