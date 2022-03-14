@@ -1,7 +1,9 @@
 Here is the process followed in non-dl approach
 
-* `Data Processing` : Got all the data to a single dataframe and cleaned the data
-* `Mood ---> Genre`: Assigned a genre manually to different moods as follows 
+## Data Processing
+* Got all the data to a single dataframe and cleaned the data
+## Mood ---> Genre
+* Assigned a genre manually to different moods as follows 
 ```
 ├── Joy                     <- Action,Adventure,Fantasy,Sci-Fi
 ├── Sadness                 <- Comedy
@@ -11,7 +13,8 @@ Here is the process followed in non-dl approach
 ├── Love                    <- Drama
 
 ```
-* `Genre mapping`: We have compared the genres classified based on movies to genres classified in the input data by IMDB
+## Genre Mapping
+* We have compared the genres classified based on movies to genres classified in the input data by IMDB
 
 ## LDA Topic Modeling
 * We take input from the user  to describe the movie they want to watch after selecting the mood. 
