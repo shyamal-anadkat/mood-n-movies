@@ -11,9 +11,9 @@ Here's where we are housing all the scripts:
 
 Non-Deep Learning Approach
 
-* `non-dl/classification_model.py`
-* `non-dl/final_non_dl_approach.py`
-* `non-dl/multi_label_classification_check.py`
+* `non-dl/classification_model.py` : this is one of the model types we experimented but havent got good results due to unequal distribution in the data
+* `non-dl/final_non_dl_approach.py`: LDA approach is used in this model which gave better results compared to other models.
+* `non-dl/multi_label_classification_check.py`: this script has code to show how the data is distributed showing how it is effecting the model to not perform very well using non-dl approach.
 
 ### Why Metacritic? 
 
