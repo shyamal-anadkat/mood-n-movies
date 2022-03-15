@@ -46,6 +46,12 @@ the document embeddings for the movie plots are calculated in `preload()` and ca
 * Run `make clean` before pushing your code (which will format and do the linting for you)
 * Please ensure the build on github passes after you merge your code to master/push your commit 
 
+### UI Screenshot
+
+![Screen Shot 2022-03-11 at 6 10 00 PM](https://user-images.githubusercontent.com/12115186/158288113-06eaf36d-0ad1-4d2a-aee1-a84a7ffe16aa.png)
+
+
+
 ## Project Structure 
 
 ```
