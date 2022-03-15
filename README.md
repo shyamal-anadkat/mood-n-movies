@@ -1,5 +1,7 @@
 [![build](https://github.com/shyamal-anadkat/AIPI540_NLP/actions/workflows/main.yml/badge.svg?branch=master)](https://github.com/shyamal-anadkat/AIPI540_NLP/actions/workflows/main.yml)
 
+<img src="https://media.giphy.com/media/8lKyuiFprZaj2lC3WN/giphy.gif" width="200" height="200">
+
 # Mood & Movies <br/>
 > Better movie recommendations, based on how you're feeling.
 #### AIPI 540 NLP Team Project | Spring Semester 2022
