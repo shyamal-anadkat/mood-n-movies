@@ -8,6 +8,7 @@ Here's where we are housing all the scripts:
 * `model.py`: saves sentence-transformers/multi-qa-MiniLM-L6-cos-v1 pretrained model for future use 
 * `wiki_movie_scraper.py`: scrapes movie plots from wikipedia to be used by recommendation system
 * `build_features.py`: merges processed datasets to creat the final output df
+* `inference.py` & `app.py`: real-time inference helper and streamlit application script
 
 Non-Deep Learning Approach
 
