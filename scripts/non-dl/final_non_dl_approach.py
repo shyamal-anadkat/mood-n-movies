@@ -6,10 +6,8 @@ Created on Mon Mar  7 09:52:12 2022
 @author: snigdharudraraju
 """
 
-# Lets start with tokenizing the data to get all the inputs in a single row
-# Sorting data into dataframes
 
-# Sorting data into dataframes
+
 import string
 
 from spacy.lang.en.stop_words import STOP_WORDS
@@ -31,12 +29,14 @@ import warnings
 nltk.download('stopwords')
 warnings.filterwarnings("ignore")
 
+# Sorting data into dataframes
 imdb_data = pd.read_csv("../../data/processed/IMDB_top_1000_clean.csv")
 movies = array(imdb_data["title"])
 Introduction = array(imdb_data["introduction"])
 
 genre3 = imdb_data["genre"].str.split(",", expand=True)
 
+# Splitting Genre into 3 different genre columns
 imdb_data["genre0"] = genre3[0]
 imdb_data["genre1"] = genre3[1]
 imdb_data["genre2"] = genre3[2]
@@ -89,7 +89,7 @@ for i in range(len(topic_list)):
 mapping_table = pd.DataFrame(rows_map, columns=["Mood_map", "Genre_map"])
 
 
-# Comparision with genres basis our classification
+#  Genres basis on our classification/Mapping
 
 list_of_genres = []
 for i in range(len(mapping_table["Mood_map"])):
@@ -173,7 +173,7 @@ b = np.mean(np.square(topic_assignments - a), axis=1)
 c = np.argsort(b)
 imdb_data["scores"] = c
 
-#%%Comparing and selecting the movies
+#%%Comparing and selecting the movies based on genre match
 genreCountCheck = 0
 for genre in list_of_genres:
     if genreCountCheck == 0:
