@@ -67,6 +67,8 @@ for the Wikipedia plots. The output for this method is a list of top 10 movie re
 
 **Documentation for [scripts](https://github.com/shyamal-anadkat/mood-n-movies/blob/master/scripts/README.md)**
 
+**Documentation for [non deep learning approach](https://github.com/shyamal-anadkat/mood-n-movies/tree/master/scripts/non-dl)**
+
 ## Deep Learning Pipeline Overview 
 
 <img width="1245" alt="image" src="https://user-images.githubusercontent.com/12115186/158284817-0287b006-501d-4078-a089-b4de7861818d.png">
