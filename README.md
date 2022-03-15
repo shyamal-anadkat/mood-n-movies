@@ -1,7 +1,7 @@
 [![build](https://github.com/shyamal-anadkat/AIPI540_NLP/actions/workflows/main.yml/badge.svg?branch=master)](https://github.com/shyamal-anadkat/AIPI540_NLP/actions/workflows/main.yml)
 
-AIPI540 NLP
-========================
+# Mood & Movies <br/>
+> Better movie recommendations, based on your mood
 #### AIPI 540 NLP Team Project | Spring Semester 2022
 
 **Team Members:** Shyamal Anadkat, Hearsch Jariwala, Snigdha Rudraraju
@@ -29,6 +29,7 @@ Run the Streamlit interface from root of the project: `streamlit run app.py`
 ├── notebooks               <- directory to store any exploration notebooks used
 ├── .gitignore              <- git ignore file
 ```
+Documentation for [scripts](https://github.com/shyamal-anadkat/mood-n-movies/blob/master/scripts/README.md)
 
 ## Contributing 
 
