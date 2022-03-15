@@ -31,6 +31,11 @@ Run the Streamlit interface from root of the project: `streamlit run app.py`
 ```
 Documentation for [scripts](https://github.com/shyamal-anadkat/mood-n-movies/blob/master/scripts/README.md)
 
+## Deep Learning Pipeline Overview 
+
+<img width="1245" alt="image" src="https://user-images.githubusercontent.com/12115186/158284817-0287b006-501d-4078-a089-b4de7861818d.png">
+
+
 ## Contributing 
 
 * Run `make clean` before pushing your code (which will format and do the linting for you)
