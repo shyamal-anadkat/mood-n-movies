@@ -2,6 +2,7 @@ Here is the process followed in non-dl approach
 
 ## Data Processing
 * Got all the data to a single dataframe(Movies,plot summary, IMDB rating,Metacritic rating,Genre) and cleaned the data
+
 ## Mood ---> Genre
 * Assigned a genre manually to different moods as follows 
 ```
@@ -11,8 +12,8 @@ Here is the process followed in non-dl approach
 ├── Anger                   <- Family
 ├── Fear                    <- Horror
 ├── Love                    <- Drama
-
 ```
+
 ## Genre Mapping
 * We have compared the genres classified based on movies to genres classified in the input data by IMDB
 
