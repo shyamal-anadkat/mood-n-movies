@@ -2,9 +2,8 @@ from bs4 import BeautifulSoup
 import requests
 import pandas as pd
 
-##############################
-## Author: Shyamal Anadkat ###
-##############################
+# @author: AIPI 540 Team ##
+
 def get_critic_reviews(movie_title):
     review_dict = {
         "critic_reviews": [],
