@@ -1,11 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Thu Mar 10 16:05:05 2022
-
-@author: snigdharudraraju
-"""
-
 import pandas as pd
 import smart_open
 import spacy
