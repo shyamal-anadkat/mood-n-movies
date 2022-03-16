@@ -1,13 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Mon Mar  7 09:52:12 2022
-
-@author: snigdharudraraju
-"""
-
-
-
 import string
 
 from spacy.lang.en.stop_words import STOP_WORDS
