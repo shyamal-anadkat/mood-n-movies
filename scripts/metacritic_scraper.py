@@ -1,10 +1,21 @@
+# import dependencies
 from bs4 import BeautifulSoup
 import requests
 import pandas as pd
 
-# @author: AIPI 540 Team ##
+# @author: AIPI 540 Team #5
+
 
 def get_critic_reviews(movie_title):
+    """The critic reviews is a DataFrame of lists that contain movie
+    metadata such as the string for movie title.
+
+    :param movie_title: list{movie_title:str}
+
+    :return: a dictionary of lists that contain metadata regarding movies on
+    critic_reviews, movie_title, metacritic_url, and num_critic_reviews.
+    Specifically returning the metacritic review data.
+    """
     review_dict = {
         "critic_reviews": [],
         "movie_title": [],
@@ -35,6 +46,15 @@ def get_critic_reviews(movie_title):
 
 
 def get_user_reviews(movie_title):
+    """The critic reviews is a DataFrame of lists that contain movie
+    metadata such as the string for movie title.
+
+    :param movie_title: list{movie_title:str}
+
+    :return: a dictionary of lists that contain metadata regarding movies on
+    critic_reviews, movie_title, metacritic_url, and num_critic_reviews.
+    Specifically returning the user review data.
+    """
     review_dict = {
         "user_reviews": [],
         "movie_title": [],
@@ -71,6 +91,15 @@ def get_user_reviews(movie_title):
 
 
 def reviews_fetch_and_fill(imdb_df):
+    """Metacritic and user critic reviews data will be fetched
+
+    A list will be returned containing critic reviews and user reviews with
+    the linked URL.
+
+    :param imdb_df: DataFrame
+
+    :return: A list of critic and user movie reviews with link.
+    """
     count = 0
     data = []
     for _, row in imdb_df.iterrows():
