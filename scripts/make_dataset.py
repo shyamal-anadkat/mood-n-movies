@@ -1,14 +1,34 @@
+# import dependencies
 import pandas as pd
 from ast import literal_eval
 
 
 def safe_div(x, y):
+    """Allows division of undefined to be 0.
+
+    The function checks to see if division by 0 is occurring and lets the
+    value return 0 or proceed further.
+
+    :param x: float containing the emotion score
+    :param y: float containing total reviews score
+
+    :return: float value containing calculated score or 0.
+    """
     if y == 0:
         return 0
     return x / y
 
 
 def calculate_aggregate(scores):
+    """Calculate user reviews aggregated movie's overall emotion score.
+
+    Finds each of the user review emotion scores and then aggregates it to
+    give overall emotion score for that labeled movie.
+
+    :param scores: DataFrame with emotion scores for user reviews
+
+    :return: the aggregated emotion scores for movies based off user reviews.
+    """
     data = literal_eval(scores)
     sadness = joy = love = anger = fear = surprise = 0
     total_reviews = len(data)
