@@ -4,8 +4,22 @@ import requests
 import pandas as pd
 import re
 
+# @author: AIPI 540 Team #5
+
 
 def is_right_wikipg(href, imdb_soup):
+    """Determine if the wikipedia page is correct
+
+    Checks to see if the wikipedia page is right based on External links
+    matching the IMDB movie link href. The href is an HTML attribute that
+    specifies the URL of the page the link redirects to.
+    https://www.w3schools.com/tags/att_a_href.asp
+
+    :param href: string containing title_href id(title/tt1160419)
+    :param imdb_soup: object with constructor and parser
+
+    :returns: bool of whether imdb link matched href link
+    """
     retVal = False
     href_id = re.findall(r".(tt[0-9]*)", href)[0]
     imdb_link_elem = imdb_soup.select_one(
@@ -28,6 +42,16 @@ def is_right_wikipg(href, imdb_soup):
 
 
 def sensible_title_caps(title):
+    """Capitalize the title of a movie
+
+    This function capitalizes the first character in movie titles while
+    leaving out certain words to not be capitalized
+
+    :param title: string of the movie title name
+
+    :return: string containing the movie title with capitalized first
+    letters except certain words
+    """
     no_caps_list = ["in", "the"]
     words = []
     for word in title.split():
@@ -38,6 +62,18 @@ def sensible_title_caps(title):
 
 
 def create_df_with_plots(imdb_df):
+    """A dataframe is created
+
+    The dataframe consists of movie title, metacritic link, wikipedia
+    link, and movie plot. A dataframe is two-dimensional, size-mutable,
+    potentially heterogeneous tabular data.
+    https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html
+
+    :param imdb_df: {title:str, title_href:str, mc_link:str, produce_year:int}
+
+    :return: Final dataframe with movie title, metacritic link, wikipedia
+    link, and movie plot summary.
+    """
     movie_title = imdb_df[["title", "title_href", "mc_link", "produce_year"]].values
     num_missing_link = 0
 
