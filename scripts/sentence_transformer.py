@@ -1,16 +1,30 @@
+# import dependencies
 import pandas as pd
 from sentence_transformers import SentenceTransformer, util
 
-# Load the model
-# https://huggingface.co/sentence-transformers/multi-qa-MiniLM-L6-cos-v1
-
-# This is a sentence-transformers model: It maps sentences & paragraphs to a 384 dimensional dense vector space and was
-# designed for semantic search. It has been trained on 215M (question, answer) pairs from diverse sources.
-# For an introduction to semantic search, have a look at: SBERT.net - Semantic Search
+# @author: AIPI 540 Team #5
 
 
 def similarity_search(query, df, model, doc_emb):
+    """A sentence-transformer model - multi-qa-MiniLM-L6-cos-v1
 
+    This is a sentence-transformers model: It maps sentences & paragraphs to a
+    384 dimensional dense vector space and was designed for semantic search.
+    It has been trained on 215M (question, answer) pairs from diverse sources.
+    For an introduction to semantic search, have a look at: SBERT.net -
+    Semantic Search. The multi-qa-MiniLM-L6-cos-v1 model will be used to
+    conduct a similarity search for top 10 movie plot recommendations based
+    on user query.
+    https://huggingface.co/sentence-transformers/multi-qa-MiniLM-L6-cos-v1
+
+    :param query: string input from user text
+    :param df: DataFrame{title_x:str, plot:str}
+    :param model: sentence_transformers.SentenceTransformer
+    :param doc_emb: int containing doc embeddings
+
+    :return: top 10 recommendations for similar movie plots based on user
+    query.
+    """
     sample = df[["title_x", "plot"]]
     titles = sample["title_x"].tolist()
     docs = sample["plot"].tolist()
