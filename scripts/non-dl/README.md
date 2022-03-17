@@ -30,3 +30,4 @@ Here is the process followed in non-dl approach
 * Run the final_non_dl_approach.py file
 * Enter what movie you want to watch. For example - " I like to watch a movie where a person teleports to space using a spaceship "
 * Enter your mood from the 6 moods mentioned
+* Just wait.....
