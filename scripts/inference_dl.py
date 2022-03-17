@@ -47,9 +47,9 @@ def get_reccs(finaldf, in_mood, in_query, stmodel, doc_emb):
         lambda score: get_score(mapped_mood, score)
     )
 
-    # takes 100 largest by mood score for that particular mood
+    # takes 100/200 largest by mood score for that particular mood
     srted = finaldf.nlargest(
-        100, "mood_score"
+        200, "mood_score"
     )  # https://pandas.pydata.org/pandas-docs/version/0.17.0/generated/pandas.DataFrame.nlargest.html
 
     # srted.to_csv("test.csv", index=False)

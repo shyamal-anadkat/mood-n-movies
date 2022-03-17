@@ -267,4 +267,5 @@ for plot in Recommendations["plot"]:
 Recommendations["ratios"] = match
 Recommendations = Recommendations.sort_values(["ratios", "MetaS", "imdbr"], ascending=[False, False, False])
 
-print(Recommendations.head())
+print("======Recommendations======")
+print(Recommendations['Titles'])
