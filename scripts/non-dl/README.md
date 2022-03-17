@@ -25,3 +25,8 @@ Here is the process followed in non-dl approach
 ## Sentence Mapping
 * We did tokenization, lemmatization and removed stop words from the plot summary and the input given by the user. 
 * We then calculated ratio between number of common words to number of words in input. this ratio is used to filter the best match
+
+## How to run it!!!!
+* Run the final_non_dl_approach.py file
+* Enter what movie you want to watch. For example - " I like to watch a movie where a person teleports to space using a spaceship "
+* Enter your mood from the 6 moods mentioned
