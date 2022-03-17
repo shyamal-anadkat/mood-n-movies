@@ -19,6 +19,10 @@ Run the Streamlit interface from root of the project: `streamlit run app.py`
 
 ### Contributing (_detailed_)
 
+**Note there's a Makefile so just run `make install` to install all the requirements in `requirements.txt`**
+
+Here's a detailed explanation of the pipeline for contributing: 
+
  1. **(IMDB movie list scraping)** Update `imdb_scraper.py` as necessary to scrape additional movie lists from IMDB; ensure the output csv gets persisted
 to `data/raw` as `data/raw/imdb_top_1000_lang_en.csv`. For the POC, we have modeled this off the top 1000 IMDB movie list. 
  2. **(IMDB raw data cleaning)** Clean the IMDB data from (1) by executing `clean_imdb_dataset.py`; the cleaned output file will be saved in `data/processed`.
