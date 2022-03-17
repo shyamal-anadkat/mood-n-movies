@@ -25,3 +25,4 @@ streamlit
 spacy
 gensim
 smart_open
+tqdm

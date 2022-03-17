@@ -3,6 +3,12 @@ import pandas as pd
 
 
 def _get_emotion_scores(clf, reviews):
+    """
+    Gets emotion scores from user reviews
+    :param clf:
+    :param reviews:
+    :return:
+    """
     review_list = reviews.split("</review>")
     scores = []
     for review in review_list[:-1]:

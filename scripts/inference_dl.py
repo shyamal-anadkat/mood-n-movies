@@ -10,6 +10,11 @@ def get_score(mood, agg_score):
 
 
 def get_mapped_mood(in_mood):
+    """
+    Gets mapped mood from user mood
+    :param in_mood:
+    :return:
+    """
     # mood_list = ["sadness", "joy", "love", "fear", "surprise", "anger"]
     if in_mood == "sadness":
         return "joy"
@@ -26,6 +31,15 @@ def get_mapped_mood(in_mood):
 
 
 def get_reccs(finaldf, in_mood, in_query, stmodel, doc_emb):
+    """
+    Get recommendations from final dataframe, input mood, model, doc embeddings, and input query
+    :param finaldf:
+    :param in_mood:
+    :param in_query:
+    :param stmodel:
+    :param doc_emb:
+    :return:
+    """
     finaldf["aggregate_score"] = finaldf["aggregate_score"].tolist()
     mapped_mood = get_mapped_mood(in_mood)
     print(f"Recommending {mapped_mood} movies")

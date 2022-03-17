@@ -6,6 +6,7 @@ import pandas as pd
 import spacy
 import nltk
 from numpy import array
+from tqdm import tqdm
 
 #!python -m spacy download en_core_web_md
 nlp = spacy.load("en_core_web_sm")
@@ -38,8 +39,8 @@ imdb_data = imdb_data.drop(
 
 
 # Processing data taken from customer and getting their mood
-val = input("what do you feel like watching: ")
-mood = input("Enter your mood: [Sadness, Joy, Fear, Anger, Surprise, Love]")
+val = input("What do you want to watch?: ")
+mood = input("Enter your mood [Sadness, Joy, Fear, Anger, Surprise, Love]: ")
 
 
 # Map the mood to genres
@@ -74,7 +75,7 @@ feelings = [
 ]
 
 rows_map = []
-for i in range(len(topic_list)):
+for i in tqdm(range(len(topic_list))):
     rows_map.append([feelings[i], topic_list[i]])
 mapping_table = pd.DataFrame(rows_map, columns=["Mood_map", "Genre_map"])
 
@@ -82,7 +83,7 @@ mapping_table = pd.DataFrame(rows_map, columns=["Mood_map", "Genre_map"])
 #  Genres basis on our classification/Mapping
 
 list_of_genres = []
-for i in range(len(mapping_table["Mood_map"])):
+for i in tqdm(range(len(mapping_table["Mood_map"]))):
     if mapping_table["Mood_map"][i] == mood:
         list_of_genres.append(mapping_table["Genre_map"][i])
 
@@ -95,7 +96,7 @@ imdb_data = imdb_data.merge(
 
 movies = list(imdb_data["title_x"])
 
-for i in range(len(movies)):
+for i in tqdm(range(len(movies))):
     for j in range(len(Plot_summary["title"])):
         if movies[i] in Plot_summary["title"][j]:
             imdb_data["plot"][i] = Plot_summary["plot"][j]
@@ -138,7 +139,7 @@ def model_topics(vectorized_text, vectorizer, n_topics, n_words, model_type):
     # Get the main keywords and scores corresponding to each topic
     vocab = vectorizer.get_feature_names()
     topics = []
-    for comp in model.components_:
+    for comp in tqdm(model.components_):
         # Get the top keywords for each topic
         sorted_words = [vocab[score] for score in np.argsort(comp)[::-1]][:n_words]
         # Get the scores for each top keyword
@@ -165,7 +166,7 @@ imdb_data["scores"] = c
 
 #%%Comparing and selecting the movies based on genre match
 genreCountCheck = 0
-for genre in list_of_genres:
+for genre in tqdm(list_of_genres):
     if genreCountCheck == 0:
         genreCount = imdb_data["genre0"] == genre
         genreCount = genreCount.astype("int32")
@@ -187,7 +188,7 @@ Final_df["imdbr"] = imdb_data["rating"]
 Final_df["score"] = imdb_data["scores"]
 
 Final_df = Final_df.sort_values(
-    ["Count", "MetaS", "imdbr", "score"], ascending=[False, False, False, True]
+    ["Count", "score"], ascending=[False, True]
 )
 
 Recommendations = pd.DataFrame()
@@ -213,7 +214,7 @@ Recommendations = Recommendations.drop(
     axis=1,
 )
 W_r = Recommendations["plot"].tolist()
-for i in range(len(W_r)):
+for i in tqdm(range(len(W_r))):
     # if pd.isnull(W_r[i])== "True":
     #     imdb_data_summary['plot'][i]= "Nothing"
     # else:
@@ -240,7 +241,7 @@ nlp = spacy.load("en_core_web_sm")
 doc = nlp(val)
 
 tokens_cus = [token for token in doc]
-tokens_cus = [token.lemma_.lower().strip() for token in tokens_cus]
+tokens_cus = [token.lemma_.lower().strip() for token in tqdm(tokens_cus)]
 
 
 
@@ -264,6 +265,6 @@ for plot in Recommendations["plot"]:
     match.append(len(a.intersection(b)) / float(len(b)))
 
 Recommendations["ratios"] = match
-Recommendations = Recommendations.sort_values("ratios", ascending=False)
+Recommendations = Recommendations.sort_values(["ratios", "MetaS", "imdbr"], ascending=[False, False, False])
 
 print(Recommendations.head())
